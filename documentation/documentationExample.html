@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Krenoril Data Editor - Documentation</title>
+    <style>
+        body {
+            background-color: #121212;
+            color: white;
+        }
+
+        a {
+            color: #1976d2;
+        }
+
+		table {
+		  border-collapse: collapse;
+		  width: 100%;
+		  margin-top: 8px;
+		}
+
+		td {
+		  border: 1px solid #ddd;
+		  padding: 8px;
+		}
+
+		th {
+		  padding-top: 12px;
+		  padding-bottom: 12px;
+		  text-align: center;
+		  background-color: #1976d2;
+		  color: white;
+		  border: 1px solid #ddd;
+		}
+		
+        .mainView {
+            padding-left: 8px;
+        }
+
+        .panel {
+            background-color: #282c34;
+            padding: 8px;
+            border: none;
+            outline: none;
+            transition: 0.4s;
+            max-height: 0px;
+            overflow: hidden;
+            transition: max-height 0.2s ease-out;
+
+            opacity: 0;
+        }
+
+        .active {
+            opacity: 1;
+			overflow-y: auto;
+        }
+
+        .header {
+            min-height: 40px;
+            background-color: #1976d2;
+            cursor: pointer;
+        }
+
+        .header:hover {
+            color: snow;
+        }
+
+        .header h2 {
+            vertical-align: middle;
+            display: inline-block;
+            margin-left: 8px;
+        }
+
+        .code {
+            background-color: #100f0f;
+            width: fit-content;
+            padding: 4px;
+            border-radius: 4px;
+        }
+
+        .tabs {
+           margin-top: 8px;
+		   margin-bottom: 8px;
+        }
+
+        .tab {
+            background-color: #100f0f;
+            transition: 0.3s;
+			cursor: pointer;
+			padding: 8px;
+			text-transform: capitalize;
+        }
+
+        .tab.selected {
+            background-color: #1976d2;
+        }
+
+        .tab:not(.selected):hover {
+            background-color: #00366b;
+        }
+
+        .tabContents {
+			margin-top: 16px;
+        }
+
+        .cell {
+            font-size: "14px"
+        }
+
+        .columnDescription {
+            font-size: "14px";
+            white-space: "normal";
+        }
+
+        .tableDetails {
+        }
+        
+        .hidden {
+            display: none;            
+        }
+		
+		.tablePropertyRow {
+            cursor: pointer;
+		}
+    </style>
+  </head>
+  <body>
+    <script>
+        function toggleAccordion(e) {
+            let elementToTarget = null;
+            if (e.target.classList.contains("header")) {
+                elementToTarget = e.target.parentElement.children[1];
+            } else {
+                elementToTarget = e.target.parentElement.parentElement.children[1];
+            }
+
+            if (elementToTarget.classList.contains("active")) {
+                elementToTarget.style.maxHeight = "0px";
+                elementToTarget.classList.remove("active");
+            } else {
+                elementToTarget.style.maxHeight = Math.max(elementToTarget.scrollHeight, 1000) + "px";
+                elementToTarget.classList.add("active");
+            }
+        }
+
+		function toggleTabSelected(e) {
+			const target = e.target;
+			const tabs = target.parentElement.children;
+			const tabContents = target.parentElement.parentElement.children[1].children;
+			
+			const elementIndex = Array.from(tabs).indexOf(target);
+		
+			for (let i = 0; i < tabs.length; ++i) {
+				const element = tabs[i];
+				if (i === elementIndex) {
+					element.classList.add("selected");
+				} else {
+					element.classList.remove("selected");
+				}
+			}
+		
+			for (let i = 0; i < tabContents.length; ++i) {
+				const element = tabContents[i];
+				if (i === elementIndex) {
+					element.classList.remove("hidden");
+				} else {
+					element.classList.add("hidden");
+				}
+			}
+		}
+		
+        function toggleTableRowExpanded(e) {
+			const target = e.target;
+			const rows = Array.from(target.parentElement.parentElement.children);
+			const targetIndex = rows.findIndex((row) => {
+				return Array.from(row.children).includes(target);
+			});
+			for (let i = targetIndex + 1; i < rows.length; ++i) {
+				const element = rows[i];
+				if (element.classList.contains("tableDetails")) {
+					if (element.classList.contains("hidden")) {
+						element.classList.remove("hidden");
+					} else {
+						element.classList.add("hidden");
+					}
+					break;
+				}
+			}
+        }
+    </script>
+    <div class="mainView">
+        <h1>
+            2 schemas
+        </h1>
+		<div>
+			<div>
+<div class="header" onclick="toggleAccordion(event)">
+    <h2>Weapon Data</h2>
+</div>
+    <div class="panel">
+        <div>
+            Represents a weapon that the player or an NPC can equip
+        </div>
+        <div>
+    <div class="tabs">
+    <span class="tab" onclick="toggleTabSelected(event)">
+    int
+</span>
+<span class="tab" onclick="toggleTabSelected(event)">
+    string
+</span>
+<span class="tab" onclick="toggleTabSelected(event)">
+    table
+</span>
+    </div>
+
+    <div class="tabContents">
+        <div class="tabContent">
+    <table>
+<tr>
+    <th class="cell">Name</th>
+    <th class="cell">Minimum</th>
+    <th class="cell">Maximum</th>
+    <th class="cell">Default</th>
+	<th class="cell">Description</th>
+</tr>
+<tr>
+    <td class="cell">
+        Damage
+    </td>
+    <td class="cell">
+        0
+    </td>
+    <td class="cell">
+        100
+    </td>
+    <td class="cell">
+        10
+    </td>
+	<td class="columnDescription">
+        How powerful this weapon is
+    </td>
+</tr>
+</table>
+</div>
+<div class="tabContent">
+    <table class="table">
+<tr>
+    <th class="cell">Name</th>
+    <th class="cell">Reference Prefix</th>
+    <th class="cell">Description</th>
+</tr>
+<tr>
+    <td class="cell">
+        Slot
+    </td>
+    <td class="cell">
+        SLOT
+    </td>
+	<td class="columnDescription">
+        The slot this weapon can be equipped to
+    </td>
+</tr>
+</table>
+</div>
+<div class="tabContent">
+    <table>
+<tr>
+    <th>
+        Name
+    </th>
+    <th>
+        Int Columns
+    </th>
+    <th>
+        Float Columns
+    </th>
+    <th>
+        String Columns
+    </th>
+<tr>
+<tr class="tablePropertyRow" onclick="toggleTableRowExpanded(event)">
+	<td class="cell">
+		Rarity
+	</td>
+	<td class="cell">
+		1
+	</td>
+	<td class="cell">
+		1
+	</td>
+	<td class="cell">
+		0
+	</td>
+</tr>
+<tr class="tableDetails hidden">
+	<td colspan="4">
+		<div>
+			<div>
+    <h4>Integer Columns</h4>
+    <table>
+<tr>
+    <th class="cell">Name</th>
+    <th class="cell">Minimum</th>
+    <th class="cell">Maximum</th>
+    <th class="cell">Default</th>
+	
+</tr>
+<tr>
+    <td class="cell">
+        Max Player Level
+    </td>
+    <td class="cell">
+        0
+    </td>
+    <td class="cell">
+        30
+    </td>
+    <td class="cell">
+        0
+    </td>
+	
+</tr>
+</table>
+</div>
+			<div>
+    <h4>Float Columns</h4>
+    <table>
+<tr>
+    <th class="cell">Name</th>
+    <th class="cell">Minimum</th>
+    <th class="cell">Maximum</th>
+    <th class="cell">Default</th>
+	
+</tr>
+<tr>
+    <td class="cell">
+        Percent Chance
+    </td>
+    <td class="cell">
+        0
+    </td>
+    <td class="cell">
+        100
+    </td>
+    <td class="cell">
+        25
+    </td>
+	
+</tr>
+</table>
+</div>
+			
+		</div>
+	</td>
+</tr>
+</table>
+</div>
+    </div>
+</div>
+    </div>
+</div>
+<div>
+<div class="header" onclick="toggleAccordion(event)">
+    <h2>Item Slot</h2>
+</div>
+    <div class="panel">
+        <div>
+            Represents an slot where items can be attached
+        </div>
+        <div>
+    <div class="tabs">
+    
+    </div>
+
+    <div class="tabContents">
+        
+    </div>
+</div>
+    </div>
+</div>
+		</div>
+    </div>
+	<script>
+		const tabs = Array.from(document.querySelectorAll(".tabs .tab:first-child"));
+		for (const tab of tabs) {
+			tab.click();
+		}
+	</script>
+  </body>
+</html>

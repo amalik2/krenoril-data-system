@@ -1,0 +1,14 @@
+settings/
+deploy/
+*.bat
+TODO.txt
+data/
+krenoril-data-editor/
+publishImages/
+.vs/
+Intermediate/Build/
+examples/
+license.txt
+old-krenoril-data-editor/
+old-documentation/
+advanced-src/

@@ -1,0 +1,1 @@
+{"id":"Player Created Container","enabled":true,"description":"","records":[{"prefix":"WEP1","records":[]},{"prefix":"SLOT","records":[]},{"prefix":"DIFF","records":[{"id":"CustomDifficulty","name":"Custom Difficulty","properties":[{"id":"Player Default Health","value":9999,"type":"int"}],"importantProperties":[]}]}]}

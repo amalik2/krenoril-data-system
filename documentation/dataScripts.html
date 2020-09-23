@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Krenoril Data System - Data Scripts</title>
+	<style>
+		body {
+            background-color: #121212;
+            color: white;
+        }
+
+        a {
+            color: #1976d2;
+        }
+
+		.mainView {
+			padding-left: 8px;
+		}
+		
+		.panel {
+            background-color: #282c34;
+            padding: 8px;
+            border: none;
+            outline: none;
+            transition: 0.4s;
+            max-height: 0px;
+            overflow: hidden;
+            transition: max-height 0.2s ease-out;
+
+            opacity: 0;
+        }
+
+        .active {
+            opacity: 1;
+        }
+
+        .header {
+            min-height: 40px;
+            background-color: #1976d2;
+            cursor: pointer;
+        }
+
+        .header:hover {
+            color: snow;
+        }
+
+        .header h2 {
+            vertical-align: middle;
+            display: inline-block;
+            margin-left: 8px;
+        }
+
+		.bold {
+			font-weight: bold;
+		}
+		
+		.code {
+            background-color: #100f0f;
+            width: 100%;
+            padding: 4px;
+            border-radius: 4px;
+			overflow-x: auto;
+			white-space: pre;
+			display: block;
+			resize: none;
+			overflow-y: hidden;
+			color: white;
+        }
+	</style>
+  </head>
+  <body>
+	<script>
+        function toggleAccordion(e) {
+            let elementToTarget = null;
+            if (e.target.classList.contains("header")) {
+                elementToTarget = e.target.parentElement.children[1];
+            } else {
+                elementToTarget = e.target.parentElement.parentElement.children[1];
+            }
+
+            if (elementToTarget.classList.contains("active")) {
+                elementToTarget.style.maxHeight = "0px";
+                elementToTarget.classList.remove("active");
+            } else {
+                elementToTarget.style.maxHeight = `${elementToTarget.scrollHeight}px`;
+                elementToTarget.classList.add("active");
+            }
+        }
+    </script>
+    <div class="mainView">
+		<div>
+			<div>
+                <div aria-label="What are Data Scripts?" class="header" tabindex="0" onclick="toggleAccordion(event)">
+                    <h2>What are Data Scripts?</h2>
+                </div>
+                <div class="panel">
+                    Data Scripts are arbitrary JavaScript files that allow you perform bulk operations with the data
+					that is currently loaded. These operations include creating new records, modifying existing records,
+					or deleting existing records. The context and data used for these operations is entirely dependant
+					on you and what you're trying to accomplish.
+					<br />
+					<br />
+					Any Data Script file is called as a normal JavaScript function, so the file should be considered to be the
+					<span class="bold"> body</span> of a JavaScript function. The return value of the function should be an object, where the keys of the object
+					vary based on what kind of operations you are trying to perform.
+					<br />
+					<br />
+					Example Data Script file to add 10000 records under a schema with the prefix "SKIL"
+					<textarea tabindex="-1" readonly="true" class="code">
+const records = [];
+for (let i = 0; i &lt; 10000; ++i) {
+	records.push({
+		id: String(i) + " id",
+		name: String(i) + " name",
+		schema: "SKIL",
+		props: [{
+			name: "Test Integer Property",
+			value: 7
+		}]
+	});
+}
+
+return {
+	recordsToAdd: records
+}
+						</textarea>
+						To <span class="bold">create</span> records, return an array as the value for the "recordsToAdd" key. More information can be found in the "Creating Records" panel.
+						<br />
+						<br />
+						To <span class="bold">modify</span> records, return a function as the value for the "modifyRecords" key. More information can be found in the "Modifying Records" panel.
+						<br />
+						<br />
+						To <span class="bold">delete</span> records, return a function as the value for the "deleteRecords" key. More information can be found in the "Deleting Records" panel.
+					</div>
+                </div>
+			</div>
+			
+			<div>
+			</div>
+			
+			<div>
+                <div class="header" tabindex="0" onclick="toggleAccordion(event)">
+                    <h2>Modifying Records</h2>
+                </div>
+                <div class="panel">
+                    To modify records, return a function as the value for the "modifyRecords" key. The function will be passed one parameter, which represents a Record.
+					For each record in the container that is selected to run the script on, the function will be called.<br /><br />
+					Any functions defined in the Record API section at the bottom of this document can be used in your function.<br /><br />
+					For documentation purposes, it is recommended that you return <span class="bold">true</span> if a record was modified, or <span class="bold">false</span> if it was ignored.
+					This is not required, but is needed if you wish to see how many records were modified after a script was run.<br /><br />
+					
+					Example script that modifies records where the value of the "Skill Level" is less than 3:
+					<textarea tabindex="-1" readonly="true" class="code">
+return {
+	modifyRecords: (record) => {
+		if (record.getSchema().getPrefix() !== "TPLT") {
+			return false;
+		}
+		const property = record.getPropertyByName("Skill Level");
+		if (record.getPropertyValue(property) &lt; 3) {
+			record.setPropertyValue(property, 3);
+			return true;
+		}
+		return false;
+	}
+}
+					</textarea>
+                </div>
+			</div>
+			
+			<div>
+                <div class="header" tabindex="0" onclick="toggleAccordion(event)">
+                    <h2>Deleting Records</h2>
+                </div>
+                <div class="panel">
+                    To delete records, return a function as the value for the "deleteRecords" key.
+					The function will be passed one parameter, which represents a Record.
+					For each record in the container that is selected to run the script on, the function will be called.<br /><br />
+					
+					Any functions defined in the Record API section at the bottom of this document can be used in your function.<br /><br />
+					
+					Your function should return <span class="bold">true</span> if the record that is passed in should be deleted, or <span class="bold">false </span>
+					if it should not be deleted.<br/><br />
+					
+					Example script that deletes any record if the name includes the character "2"
+					<textarea tabindex="-1" readonly="true" class="code">
+return {
+	deleteRecords: (record) => {
+		return record.getName().includes("2");
+	}
+}
+					</textarea>
+                </div>
+			</div>
+			
+			<div>
+                <div class="header" tabindex="0" onclick="toggleAccordion(event)">
+                    <h2>Record API</h2>
+                </div>
+                <div class="panel">
+                    The following methods can be called on the Record object passed in as the first parameter to a delete or modification function that you write.
+					<textarea tabindex="-1" readonly="true" class="code">
+// @return the unique, non-null ID of this record as a String
+String getId();
+
+// Sets the unique, non-null ID of this record
+// @param id - the id of the record
+void setId(String id);
+
+// @return the non-null name of this record as a String
+String getName();
+
+// Sets the non-null name of this record
+// @param name - the name of the record
+void setName(String name);
+
+// Gets the property with the specified name
+// @param name - the name of the property
+// @return the specified property
+DataProperty getPropertyByName(String name);
+
+// Sets the value of the specified property
+// @param property - the property
+// @param value - the value of the property (see the Property Value Format Note below)
+void setPropertyValue(DataProperty property, Object value);
+
+// Gets the value of the specified property
+// @param property - the property
+// @return the value of the specified property (see the Property Value Format Note below)
+Object getPropertyValue(DataProperty property);
+
+// Gets whether the specified property is important or not
+// @param name - the name of the property to check
+// @return whether the specified property is important or not
+boolean isImportantProperty(String name);
+
+// Sets whether the specified property is important or not
+// @param name - the name of the property to set
+// @param important - whether the specified property is important or not
+void setImportantProperty(String name, boolean important);
+
+// Gets the schema this record falls under
+// The only methods you should invoke on the returned schema object are "getPrefix()" or "getId()"
+// @return the schema this record falls under
+Schema getSchema();
+					</textarea>
+					<div>
+						<span class="bold">Property Value Format Note:</span><br />
+						Integer and float properties internally use normal JavaScript Number objects for storage.<br />
+						String properties use normal JavaScript string objects.<br />
+						Table properties are represented as an array, where each object in the array represents a row.<br />
+						The object has the following format:
+						<textarea tabindex="-1" readonly="true" class="code">
+{
+	id: String (the unique ID of this row),
+	data: Map<DataProperty, Object> (maps each column to it's property value)
+}
+						</textarea>
+						To create a new row in a table property, use <strong>record.getPropertyByName("table property name").addRow(record)</strong>
+					</div>
+                </div>
+			</div>
+			
+			<div>
+                <div class="header" tabindex="0" onclick="toggleAccordion(event)">
+                    <h2>Advanced Example: Multiple Functions</h2>
+                </div>
+                <div class="panel">
+                    <div>
+						Suppose you want to modify, delete, and add records in the same script. You can do this through the following example.
+						<textarea tabindex="-1" readonly="true" class="code">
+return {
+	deleteRecords: (record) => {
+		if (record.getSchema().getPrefix() !== "TPLT") {
+			return false;
+		}
+		const property = record.getPropertyByName("Skill Level");
+		return record.getPropertyValue(property) &lt; 2;	// delete records with skill level less than 2
+	},
+	modifyRecords: (record) => {
+		if (record.getSchema().getPrefix() !== "TPLT") {
+			return false;
+		}
+		const property = record.getPropertyByName("Skill Level");
+		
+		// limit skill level to a max of 50
+		if (record.getPropertyValue(property) > 50) {
+			record.setPropertyValue(property, 50);
+			return true;
+		}
+		return false;
+	},
+	recordsToAdd: [{
+		id: "Unique ID",
+		name: "Default Skill Level",
+		schema: "TPLT",
+		props: []
+	}]
+}
+						</textarea>
+					</div>
+				</div>
+			</div>
+		
+			<div>
+                <div class="header" tabindex="0" onclick="toggleAccordion(event)">
+                    <h2>Advanced Example: Complex Modification</h2>
+                </div>
+                <div class="panel">
+                    Suppose you want to limit the value of the "Skill Level" integer column in a table property to a minimum of 10,
+					and ignore any records not under the "TPLT" schema.
+					<textarea tabindex="-1" readonly="true" class="code">
+return {
+	modifyRecords: (record) => {
+		if (record.getSchema().getPrefix() === "TPLT") {
+			const property = record.getPropertyByName("Table Property Name");
+			const rows = record.getPropertyValue(property);
+			let modified = false;
+			for (let i = 0; i &lt; rows.length; ++i) {
+				const column = property.getIntColumn("Skill Level");
+				const skillLevel = rows[i].data.get(column);
+				if (skillLevel &lt; 10) {
+					rows[i].data.set(column, 10);
+					modified = true;
+				}
+			}
+			return modified;
+		}
+	}
+}
+					</textarea>
+					Suppose that for any records under the "TPLT" schema, you want to keep only the first three rows of a table property, and discard the rest.
+					<textarea tabindex="-1" readonly="true" class="code">
+return {
+	modifyRecords: (record) => {
+		if (record.getSchema().getPrefix() === "TPLT") {
+			const property = record.getPropertyByName("Table Property Name");
+			const rows = record.getPropertyValue(property);
+			record.setPropertyValue(property, rows.slice(0, 3));
+			return true;
+		}
+		return false;
+	}
+}
+					</textarea>
+					Suppose you want to add 2 rows to the "Table Property" property of any record under the "TEST" schema
+					<textarea tabindex="-1" readonly="true" class="code">
+return {
+	modifyRecords: (record) => {
+		if (record.getSchema().getPrefix() === "TEST") {
+			const property = record.getPropertyByName("Table Property");
+			property.addRow(record);
+			property.addRow(record);
+			return true;
+		}
+		return false;
+	}
+}
+					</textarea>
+                </div>
+			</div>
+			
+			<div>
+                <div class="header" tabindex="0" onclick="toggleAccordion(event)">
+                    <h2>Advanced Example: Deletion</h2>
+                </div>
+                <div class="panel">
+                    Suppose you want to delete any record where the "File Paths" table property has more than 100 rows
+					<textarea tabindex="-1" readonly="true" class="code">
+return {
+	deleteRecords: (record) => {
+		if (record.getSchema().getPrefix() !== "SKIL") {
+			return false;
+		}
+		const property = record.getPropertyByName("File Path");
+		return record.getPropertyValue(property).length > 100;
+	}
+}
+					</textarea>
+					Suppose you want to delete any record not falling under the "TEST" schema
+					<textarea tabindex="-1" readonly="true" class="code">
+return {
+	deleteRecords: (record) => {
+		return record.getSchema().getPrefix() !== "TEST";
+	}
+}
+					</textarea>
+                </div>
+			</div>
+			
+			<div>
+                <div class="header" tabindex="0" onclick="toggleAccordion(event)">
+                    <h2>Advanced Example: Adding Records from a CSV file</h2>
+                </div>
+                <div class="panel">
+                    Suppose you want to read values from a CSV file called DATA.csv, located in the same directory as the one the Krenoril .exe file is run from, and add them as records.
+					<textarea tabindex="-1" readonly="true" class="code">
+const fs = require("fs");
+const data = fs.readFileSync("DATA.csv", "utf8");
+const records = [];
+for (const line of data.split("\\n")) {
+	const values = line.split(",");
+	records.push({
+		name: values[0],
+		id: values[1],
+		schema: values[2],
+		props: [{
+			name: values[3],
+			value: values[4]
+		}]
+	});
+}
+
+return {
+	recordsToAdd: records
+}
+					</textarea>
+                </div>
+            </div>
+		</div>
+	</div>
+	<script>
+		const codes = Array.from(document.querySelectorAll(".code"));
+		for (const code of codes) {
+			code.style.height = code.scrollHeight + "px";
+		}
+
+        const accordion = document.querySelector(".header");
+        accordion.click();
+	</script>
+  </body>
+</html>
