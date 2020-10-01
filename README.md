@@ -1,12 +1,12 @@
 # Krenoril Data System
 
-Krenoril Data System is an in-memory, NoSQL data store that is meant for games that use a data-driven approach for development. It allows you to store almost arbitrary game data under specific schemas in JSON files, and it loads those files at runtime. Schemas and records are modifiable through a free desktop application called Krenoril Data Editor, built with React and Electron. This was built to make it easy for UE4 game developers to add in basic mod support to their games. For more details about the editor, see [this file](Editor.md)
+Krenoril Data System is an in-memory, NoSQL data store that is meant for games that use a data-driven approach for development. It allows you to store almost arbitrary game data under specific schemas in JSON files, and it loads those files at runtime. Schemas and records are modifiable through a free desktop application called Krenoril Data Editor, built with React and Electron. This was built to make it easy for UE4 game developers to add in basic mod support to their games.
 
 ## Developer setup
 As a developer creating a game with Krenoril, follow these steps:  
 - Read and accept the [EULA](EULA.md)
 - git clone https://github.com/amalik2/krenoril-data-system.git
-- Extract `krenoril-data-editor.zip`
+- Extract `krenoril-data-editor.rar`
 - Follow the instructions in [setup.html](documentation/developers/setup.html) to set up the application
 - Follow the instructions in [adminUsageInstructions.html](documentation/developers/adminUsageInstructions.html) to learn how to use the application
 - Whenever you run the Krenoril application, make sure to launch it with `admin.bat` (NOT with the `.exe`)
@@ -14,9 +14,9 @@ As a developer creating a game with Krenoril, follow these steps:
 ## Player setup
 As a player who wants to add mods to a game that uses Krenoril Data System, follow these steps:
  - Read and accept the [EULA](EULA.md)
- - Download `krenoril-data-editor.zip` from https://github.com/amalik2/krenoril-data-system/raw/master/krenoril-data-editor.zip
+ - Download `krenoril-data-editor.rar` from https://github.com/amalik2/krenoril-data-system/raw/master/krenoril-data-editor.rar
    - OR git clone https://github.com/amalik2/krenoril-data-system.git
- - Extract `krenoril-data-editor.zip`
+ - Extract `krenoril-data-editor.rar`
  - Follow the instructions in [userUsageInstructions.html](documentation/players/userUsageInstructions.html) to learn how to set up and use the application
  - Copy the `schemas.json` file that the developers of the game have provided you into the `data/` folder inside of the application's install directory
  - Whenever you run the Krenoril application, make sure to launch it with the `.exe` file (NOT with `admin.bat`)
