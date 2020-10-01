@@ -16,7 +16,8 @@
 	"Plugins": [
 		{
 			"Name": "KrenorilStorageLite",
-			"Enabled": true
+			"Enabled": true,
+			"MarketplaceURL": "com.epicgames.launcher://ue/marketplace/product/b3db84e70de643b19d2242382dd8e0da"
 		}
 	]
 }
