@@ -6,9 +6,11 @@ data/
 krenoril-data-editor/
 publishImages/
 .vs/
-Intermediate/Build/
-examples/
+Build/
 license.txt
 old-krenoril-data-editor/
 old-documentation/
 advanced-src/
+Binaries/
+Intermediate/
+Saved/
