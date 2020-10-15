@@ -7,8 +7,8 @@ As a developer creating a game with Krenoril, follow these steps:
 - Read and accept the [EULA](EULA.md)
 - git clone https://github.com/amalik2/krenoril-data-system.git
 - Extract `krenoril-data-editor.rar`
-- Follow the instructions in [setup.html](documentation/developers/setup.html) to set up the application
-- Follow the instructions in [adminUsageInstructions.html](documentation/developers/adminUsageInstructions.html) to learn how to use the application
+- Open [setup.html](documentation/developers/setup.html) from its directory on your computer, and follow the instructions there to set up the application
+- Open [adminUsageInstructions.html](documentation/developers/adminUsageInstructions.html) from its directory on your computer, and follow the instructions there to learn how to use the application
 - Whenever you run the Krenoril application, make sure to launch it with `admin.bat` (NOT with the `.exe`)
 
 ## Player setup
@@ -17,7 +17,7 @@ As a player who wants to add mods to a game that uses Krenoril Data System, foll
  - Download `krenoril-data-editor.rar` from https://github.com/amalik2/krenoril-data-system/raw/master/krenoril-data-editor.rar
    - OR git clone https://github.com/amalik2/krenoril-data-system.git
  - Extract `krenoril-data-editor.rar`
- - Follow the instructions in [userUsageInstructions.html](documentation/players/userUsageInstructions.html) to learn how to set up and use the application
+ - Open [userUsageInstructions.html](documentation/players/userUsageInstructions.html) from its directory on your computer, and follow the instructions there to learn how to set up and use the application
  - Copy the `schemas.json` file that the developers of the game have provided you into the `data/` folder inside of the application's install directory
  - Whenever you run the Krenoril application, make sure to launch it with the `.exe` file (NOT with `admin.bat`)
 
