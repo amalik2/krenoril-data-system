@@ -138,7 +138,7 @@
                     <h2>Creating Schemas Tutorial</h2>
                 </div>
                 <div class="panel">
-                    To create a schema with the Krenoril application, click on the "Create" option in the menu bar. Select the "Schema" option in the dropdown.
+                    To create a schema with the Krenoril application, click on the "Create" option in the menu bar. Select the "Schema" option in the dropdown.<br />
                     <img src="adminImages/createSchema1.png" alt="Create schema option highlighted" />
                     
                     <br /><br/>
@@ -154,24 +154,24 @@
                     <img src="adminImages/createSchema2.png" alt="Schema details modal filled in for a 'Weapon Data' schema" />
                     
                     <br /><br/>
-                    Now, your new schema has been created and saved. If you expand the "Main" container item on the left-hand side of the application, you will be able to see your new schema underneath the container.
+                    Now, your new schema has been created and saved. If you expand the "Main" container item on the left-hand side of the application, you will be able to see your new schema underneath the container.<br />
                     <img src="adminImages/createSchema3.png" alt="Expand Main container option highlighted" />
                     <br /><br />
                     
                     To view details about your schema, click the name of your schema there, which will open up the schema details on the right-hand side of the application.
                     Here, you can add in properties to your schema, and each record using the schema must provide a value for those properties. There are four tabs, with each one corresponding to a
-                    different property type. In each tab, a table will illustrate all properties of that type for the schema. By default, the integer tab is selected. To create a new property (in this case, an integer property), click on the "Add Property" button.
+                    different property type. In each tab, a table will illustrate all properties of that type for the schema. By default, the integer tab is selected. To create a new property (in this case, an integer property), click on the "Add Property" button.<br />
                     <img src="adminImages/createSchema4.png" alt="Create integer property button highlighted" />
                     
                     <br /><br/>
                     A modal that allows you to specify details about the new property will open. Here, you can assign a name to the property, minimum and maximum values that any record must adhere to, as well as a
                     default value that will be automatically assigned to existing records, and to new ones. Optionally, you can also specify a description about the property which will be visible in the generated .html documentation file.<br />
-                    Click on the "Confirm" button to create the property.
+                    Click on the "Confirm" button to create the property.<br />
                     <img src="adminImages/createSchema5.png" alt="Create property details form filled in for a 'Damage' property" />
                     
                     <br /><br/>
                     Now, the new property has been created and your schema has been automatically saved. You can see the new property in the table. If you want to modify some attribute of the property later on, you can do so
-                    by clicking on the pencil (edit) icon. If you want to delete the property, you can do so by clicking on the red garbage can (delete) icon.
+                    by clicking on the pencil (edit) icon. If you want to delete the property, you can do so by clicking on the red garbage can (delete) icon.<br />
                     <img src="adminImages/createSchema6.png" alt="Damage property visible in properties list table" />
                     
                     <br /><br/>
@@ -180,41 +180,41 @@
                     item slots to be represented as schemas as well. This can be done by creating a new Item Slot schema. Do that using the same
                     instructions used to create the Weapon schema, and then select the "Weapon Data" schema from the left side of the application.
                     Now that we have an "Item Slot" schema, we can link the "Weapon Data" schema to it by creating a string property.
-                    Click on the "String" tab from the right-hand side of the application, and then click the "Add Property" button.
+                    Click on the "String" tab from the right-hand side of the application, and then click the "Add Property" button.<br />
                     <img src="adminImages/createSchema7.png" alt="Create string property button highlighted for Weapon Data schema" />
                     
                     <br /><br/>
                     Enter a name for the property, and then click on the "Schema Reference" field. This will
                     open a dropdown to be shown, where you can select any of the schemas that you have created. If you do not select a value from the dropdown, then you can not
-                    reference another schema. Select the "Item Slot" schema from the dropdown to reference that schema. Click the "Confirm" button to create the property.
+                    reference another schema. Select the "Item Slot" schema from the dropdown to reference that schema. Click the "Confirm" button to create the property.<br />
                     <img src="adminImages/createSchema8.png" alt="Item Slot property option highlighted in reference dropdown" />
                     
                     <br /><br/>
                     Suppose that you also wanted each weapon to have a list of different rarities, that determine how rare the weapon is based on the player's level.
                     This can be represented in a schema through the creation of a table property with one integer column (maximum player level), and one float column (percentage chance of finding the weapon).
-                    Click on the "Table" tab and click the "Add Property" button to begin creating the property.
+                    Click on the "Table" tab and click the "Add Property" button to begin creating the property.<br />
                     <img src="adminImages/createSchema9.png" alt="Rarity property form filled in" />
                     
                     <br /><br/>
                     The player's level will likely be an integer value, so there needs to be an integer column added to the table property. Click on the "Integer" tab in the modal,
-                    and then click the "Add Property" button.
+                    and then click the "Add Property" button.<br />
                     <img src="adminImages/createSchema10.png" alt="Create integer column option highlighted" />
                     
                     <br /><br/>
-                    Specify details about the integer column, similar to how you would for a normal integer property. Click on the "Confirm" button to create the column.
+                    Specify details about the integer column, similar to how you would for a normal integer property. Click on the "Confirm" button to create the column.<br />
                     <img src="adminImages/createSchema11.png" alt="Max Player Level integer column property form filled in" />
                     
                     <br /><br/>
                     We also need a float column for the percentage chance of finding the weapon, so click on the "Float" tab,
-                    and then click on the "Add Property" button.
+                    and then click on the "Add Property" button.<br />
                     <img src="adminImages/createSchema12.png" alt="Create float column option highlighted" />
                     
                     <br /><br/>
-                    Enter details about the float column, similar to how you would for a normal float property. Click on the "Confirm" button to create the column.
+                    Enter details about the float column, similar to how you would for a normal float property. Click on the "Confirm" button to create the column.<br />
                     <img src="adminImages/createSchema13.png" alt="Percentage Chance float column property filled in" />
                     
                     <br /><br/>
-                    Now, we have both of the columns we need for this property. Click on the "Confirm" button to create the property.
+                    Now, we have both of the columns we need for this property. Click on the "Confirm" button to create the property.<br />
                     <img src="adminImages/createSchema14.png" alt="Confirm property creation button highlighted" />
                     
                     <br /><br/>
@@ -227,85 +227,85 @@
                     <h2>Creating Records Tutorial</h2>
                 </div>
                 <div class="panel">
-                    Now that we have schemas, we can begin creating records. Click on the "Create" option in the menu bar, and select the "Record" option from the dropdown.
+                    Now that we have schemas, we can begin creating records. Click on the "Create" option in the menu bar, and select the "Record" option from the dropdown.<br />
                     <img src="adminImages/createRecord1.png" alt="Create record option highlighted in menu" />
                     <br /><br />
                     
                     A modal will pop up, and it requires us to specify some details about the record. The record MUST have a unique ID, that will be used to refer to the record
                     from inside your game, and from inside the Krenoril application. The ID must consist of only alphanumeric characters. You must also specify a Container that the record will fall under (in this case, we'll use the Main container),
                     as well as the schema that it uses. Remember that we need to keep track of Item Slots for Weapons, so for the first record, let's make it an Item Slot one. Enter details about the record,
-                    and click the "Confirm" button to create it.
+                    and click the "Confirm" button to create it.<br />
                     <img src="adminImages/createRecord2.png" alt="Create record form filled in for right hand item slot" />
                     <br /><br />
                     
                     Now, underneath the "Item Slot" schema item on the left-hand side of the application, you can see the "RightHandSlot" record. Clicking on the record there will show you details
-                    about it on the right-hand side of the application.
+                    about it on the right-hand side of the application.<br />
                     <img src="adminImages/createRecord3.png" alt="Right hand slot record visible in containers list" />
                     <br /><br />
                     
                     There weren't any properties associated with the "Item Slot" schema, so we don't need to do anything else for the "RightHandSlot" record. Instead, we're going to create a new "Weapon Data"
-                    record by following the same instructions as above.
+                    record by following the same instructions as above.<br />
                     <img src="adminImages/createRecord4.png" alt="Create record form filled in for iron dagger" />
                     <br /><br />
                     
                     Now we also have an iron dagger item. In game, we want the name to show up as "Iron Dagger". To do this, we should not display the unique ID of the record in game to the user (note that you can do this if you really want to, but it makes changing the ID later a more painful process so it should be avoided).<br /><br />
-                    Rather than creating a string property in the "Weapon Data" schema, Krenoril automatically provides a "Name" field that can be added to any record. Click on the pencil (edit) icon to open up details about the record's name.
+                    Rather than creating a string property in the "Weapon Data" schema, Krenoril automatically provides a "Name" field that can be added to any record. Click on the pencil (edit) icon to open up details about the record's name.<br />
                     <img src="adminImages/createRecord5.png" alt="Edit record button highlighted" />
                     <br /><br />
                     
-                    In the modal that is displayed, we can specify the name of the record with the "Name" text field. Click the "Confirm" button to save the new name of the record.
+                    In the modal that is displayed, we can specify the name of the record with the "Name" text field. Click the "Confirm" button to save the new name of the record.<br />
                     <img src="adminImages/createRecord6.png" alt="Edit record form filled in with new name for the item" />
                     <br /><br />
                     
                     Now our "IronDagger" record has the name "Iron Dagger". Other containers that have a "Weapon Data" record with the "IronDagger" ID can override this name later on and change it to something else.
                     If you recall, we assigned the default value for the "Damage" property of any record to be 10. Suppose that our "IronDagger" record is actually weaker than that, and we want to change its "Damage" value
-                    from 10 to 5. Click on the edit icon in the last column of the "Damage" property row in the Integer properties table.
+                    from 10 to 5. Click on the edit icon in the last column of the "Damage" property row in the Integer properties table.<br />
                     <img src="adminImages/createRecord7.png" alt="Edit damage button highlighted" />
                     <br /><br />
                     
-                    Change the value from 10 to 5, and click the "Confirm" button.
+                    Change the value from 10 to 5, and click the "Confirm" button.<br />
                     <img src="adminImages/createRecord8.png" alt="Damage property value set to 5" />
                     <br /><br />
                     
                     We also wanted to link each weapon to an item slot. Click on the "String" tab to show the values
                     of each string property for this record. In the "Slot" property row of the table, we can see that the default value is "NULL". This is the value that you must use when you don't want a record to specify
-                    a real value for a reference property. In our case, we want to link the Iron Dagger to the Right Hand item slot. Click the edit icon in the "Slot" property row in the String properties table.
+                    a real value for a reference property. In our case, we want to link the Iron Dagger to the Right Hand item slot. Click the edit icon in the "Slot" property row in the String properties table.<br />
                     <img src="adminImages/createRecord9.png" alt="Edit slot button highlighted" />
                     <br /><br />
                     
-                    Click on the Value field in the modal that is displayed, and select the "RightHandSlot" entry. Click the "Confirm" to update the Slot property value.
+                    Click on the Value field in the modal that is displayed, and select the "RightHandSlot" entry. Click the "Confirm" to update the Slot property value.<br />
                     <img src="adminImages/createRecord10.png" alt="Slot property dropdown with the right hand slot record highlighted" />
                     <br /><br />
                     
                     We also need to add in rarities for the Iron Dagger, based on the player's level. Click on the "Table" tab to show all table properties for the record.
                     Click on the edit icon in the "Rarity" property's row in the table. Suppose that there is a 50% chance that the player can find the Iron Dagger if they are no more than level 5, 75% chance if they are more than level 5 but no more than level 10, and a 95% chance otherwise.
                     There are many ways of handling this, depending on how we write our actual code ingame to check the Iron Dagger record's rarity property table. Lets assume that if there is a row with a column value that the player's level is less than,
-                    then the rarity in that row is used, and otherwise, the 95% chance is used. To do this, we need 2 rows in our table. Click the "Add Row" button twice.
+                    then the rarity in that row is used, and otherwise, the 95% chance is used. To do this, we need 2 rows in our table. Click the "Add Row" button twice.<br />
                     <img src="adminImages/createRecord11.png" alt="Add row to rarity table button highlighted" />
                     <br /><br />
                     
-                    Now, we have 2 rows defined for our table. Lets modify each row to reflect our requirements by clicking on the edit icon near the end of each row.
+                    Now, we have 2 rows defined for our table. Lets modify each row to reflect our requirements by clicking on the edit icon near the end of each row.<br />
                     <img src="adminImages/createRecord12.png" alt="2 rows in the rarity table" />
                     <br /><br />
                     
-                    If the player is up to level 5, there should be a 50% chance of finding the iron dagger. This can be represented with the following values. Click the "Confirm" button.
+                    If the player is up to level 5, there should be a 50% chance of finding the iron dagger. This can be represented with the following values. Click the "Confirm" button.<br />
                     <img src="adminImages/createRecord13.png" alt="First row form filled in for max player level = 5 and percent chance = 50" />
                     <br /><br />
                     
-                    Edit the second row, and set the maximum level to 10, and the percent chance to 75%. This should be the final result.
+                    Edit the second row, and set the maximum level to 10, and the percent chance to 75%. This should be the final result.<br />
                     <img src="adminImages/createRecord14.png" alt="Table with values filled out to meet the previously defined requirements" />
                     <br /><br />
                     
-                    Click the "Close" button to finish modifying the table value.
+                    Click the "Close" button to finish modifying the table value.<br />
                     <img src="adminImages/createRecord15.png" alt="Close table property details modal" />
                     <br /><br />
                     
                     We're finished specifying data for our Iron Dagger record! Now, if we wanted another weapon in our game, such as an Iron Sword, we could follow
-                    the same procedure to create another record, with different values, such as below.
+                    the same procedure to create another record, with different values, such as below.<br />
                     <img src="adminImages/createRecord16.png" alt="Iron sword property values" />
                     <br /><br />
                     
-                    Click the "Save records" button in the bottom left corner of the screen to save all your changes. This is important, and none of the changes made to your records will be saved if this is not clicked!
+                    Click the "Save records" button in the bottom left corner of the screen to save all your changes. This is important, and none of the changes made to your records will be saved if this is not clicked!<br />
                     <img src="adminImages/createRecord17.png" alt="Save records button highlighted" />
                     <br /><br />
                 </div>
@@ -339,7 +339,7 @@
                 </div>
                 <div class="panel">
                     Get all records for a certain schema
-                    <div class="code">getAllRecordsForSchema</div>
+                    <div class="code">getAllRecordsForSchema</div><br />
                     <img src="adminImages/liteBlueprintAPI1.png" alt="Get all difficulty data records in blueprint" /><br />
 
                     Get a specific record by its unique ID
