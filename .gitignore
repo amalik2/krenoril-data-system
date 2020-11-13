@@ -3,14 +3,14 @@ deploy/
 *.bat
 TODO.txt
 data/
-krenoril-data-editor/
 publishImages/
 .vs/
 Build/
 license.txt
-old-krenoril-data-editor/
 old-documentation/
 advanced-src/
 Binaries/
 Intermediate/
 Saved/
+*krenoril-data-editor/
+!krenoril-data-editor.rar
