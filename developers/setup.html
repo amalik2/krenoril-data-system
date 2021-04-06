@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+	<title>Krenoril Data System - Setup Instructions</title>
+	<style>
+        body {
+            background-color: #121212;
+			color: white;
+        }
+
+		a {
+            color: #1976d2;
+        }
+
+		.mainView {
+			padding-left: 8px;
+		}
+
+        .code {
+            background-color: #252525;
+            width: fit-content;
+            padding: 4px;
+            border-radius: 4px;
+			margin-top: 8px;
+			margin-bottom: 24px;
+        }
+
+		.hidden {
+			display: none;
+		}
+
+		.config {
+			display: flex;
+			margin-bottom: 16px;
+			margin-top: -8px;
+		}
+
+		#advanced {
+			margin-left: 8px;
+		}
+	</style>
+  </head>
+  <body>
+    <div class="mainView">
+		<h2>
+			Welcome to Krenoril!
+		</h2>
+
+		<div data-config="lite">
+			<div>
+				Follow the below instructions to get started with the Krenoril Data System. Please note that you must have purchased and downloaded <a href="https://www.unrealengine.com/marketplace/en-US/product/krenoril-data-system" target="_blank">the Krenoril Data System plugin</a> from the Unreal Engine marketplace.
+			</div>
+
+			<h2>Setup</h2>
+
+			<div>
+				<h3>
+					1. Enable the "Krenoril Storage" plugin
+				</h3>
+				<div>
+					Once you have installed the "Krenoril Storage" plugin from the Epic Games Launcher, you must enable it for your project. Open up the plugin browser from the UE4 editor, and search for the "Krenoril Storage"
+					plugin. Check the "Enabled" checkbox to enable this plugin for your project.<br />
+					<img src="setupImages/litePlugins1.png" alt="Krenoril Storage plugin enabled in UE4 editor">
+					</img>
+					<br /><br />
+
+					If you want to use the Krenoril API in C++, then you must also add in the plugin as a module dependency in your project's Build.cs file.
+					Open up Visual Studio, and add <div class="code">PublicDependencyModuleNames.AddRange(new string[] { "KrenorilStorageLite" });</div> to the file. If you don't want to use the C++ API, then this step can be skipped.<br />
+					<img src="setupImages/litePlugins2.png" alt="Plugin module dependency added in Build.cs file">
+					</img>
+				</div>
+			</div>
+
+			<div>
+				<h3>
+					2. Set up Krenoril Data Editor for your project
+				</h3>
+				<ul>
+					<li>
+						Open up your project's "Content" folder in the Windows file explorer, and create a folder
+						called "KrenorilData" there. This will be where Krenoril's data files are stored for your project.
+						<img src="setupImages/init1.png" alt="KrenorilData folder in project's content directory">
+						</img>
+					</li>
+					<li>
+						Open the Krenoril Data Editor application in administrator mode by running the <strong>admin.bat</strong> file
+					</li>
+					<li>
+						Click on the "Settings" option in the menu bar
+						<img src="setupImages/init2.png" alt="Settings option highlighted in Krenoril menu bar">
+						</img>
+					</li>
+					<li>
+						In the modal that opens up, click on the
+						"Select Output Folder" button.
+						<img src="setupImages/init3.png" alt="Settings modal containers tab">
+						</img>
+						<br /><br />
+
+						In the opened file picker, navigate to the previously created
+						"KrenorilData" folder in your project's Content folder and select it.
+						
+
+						<img src="setupImages/init4.png" alt="File picker with KrenorilData folder selected">
+						</img>
+					</li>
+					<li>
+						Click the "Confirm" button to save your changes (if you do not click this button, the changes made above will not have been changed!)
+					</li>
+				</ul>
+			</div>
+
+			<div>
+				<h3>
+					3. Get started with the Krenoril editor
+				</h3>
+				<div>
+					You've finished setting up the Krenoril plugin for your project!
+					Now, you can actually use the Krenoril Data Editor to create data records that can be loaded dynamically in your game. Instructions for using the application can be found <a href="adminUsageInstructions.html" target="_blank">here</a>.
+				</div>
+			</div>
+		</div>
+	</div>
+  </body>
+</html>
